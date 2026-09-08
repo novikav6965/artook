@@ -80,13 +80,12 @@ class Handlers:
             self.bot.send_message(message.chat.id, 'Выберите действие', reply_markup=keyboard)
 
     def _get_top(self, message):
-        if self._check_if_admin(message):
-            keyboard = self._create_admin_panel()
-            top = self.db.get_top()
-            text = 'Текущий топ:\n'
-            for row in top:
-                text += f'{row[0]}. {row[1]} ({row[2]}) - {row[3]}\n'
-            self.bot.send_message(message.chat.id, text, reply_markup=keyboard)
+        keyboard = self._create_main_keyboard()
+        top = self.db.get_top()
+        text = 'Текущий топ:\n'
+        for row in top:
+            text += f'{row[0]}. {row[1]} ({row[2]}) - {row[3]}\n'
+        self.bot.send_message(message.chat.id, text, reply_markup=keyboard)
 
     def _add(self, message):
         if self._check_if_admin(message):
