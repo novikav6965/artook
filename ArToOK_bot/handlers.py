@@ -127,8 +127,9 @@ class Handlers:
 
     def _create_main_keyboard(self):
         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        get_button = types.KeyboardButton('Показать топ')
         claim_button = types.KeyboardButton('Заявить урон')
-        keyboard.add(claim_button)
+        keyboard.add(get_button, claim_button)
         return keyboard
 
     def _create_admin_keyboard(self):
