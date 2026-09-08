@@ -80,7 +80,10 @@ class Handlers:
             self.bot.send_message(message.chat.id, 'Выберите действие', reply_markup=keyboard)
 
     def _get_top(self, message):
-        keyboard = self._create_main_keyboard()
+        if message.from_user.id in self.ADMINS_IDS:
+            keyboard = self._create_admin_keyboard()
+        else:
+            keyboard = self._create_main_keyboard()
         top = self.db.get_top()
         text = 'Текущий топ:\n'
         for row in top:
